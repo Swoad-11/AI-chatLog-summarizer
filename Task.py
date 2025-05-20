@@ -1,9 +1,11 @@
+import os
 import string
 from collections import Counter
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import nltk
 
+nltk.download("punkt_tab")
 nltk.download("punkt")
 nltk.download("stopwords")
 
@@ -50,8 +52,15 @@ def generate_summary(user_messages, ai_messages):
     print(f"AI messages: {len(ai_messages)}")
     print("Most common keywords:", ", ".join([word for word, _ in top_keywords]))
 
+    print("\nSample Summary:")
+    print(f"- The conversation had {total_messages} exchanges.")
+    print(f"- Most common keywords: {', '.join([word for word, _ in top_keywords])}.")
+
 
 if __name__ == "__main__":
-    file_path = "chat.txt"
-    user_msgs, ai_msgs = parse_chat(file_path)
-    generate_summary(user_msgs, ai_msgs)
+    file_path = "chat.txt"  # You can modify this to accept from user or command-line
+    if os.path.exists(file_path):
+        user_msgs, ai_msgs = parse_chat(file_path)
+        generate_summary(user_msgs, ai_msgs)
+    else:
+        print(f"{file_path} not found.")
