@@ -20,3 +20,18 @@ if __name__ == "__main__":
     user_msgs, ai_msgs = parse_chat(file_path)
     print("User Messages:", user_msgs)
     print("AI Messages:", ai_msgs)
+
+
+def generate_summary(user_messages, ai_messages):
+    total_messages = len(user_messages) + len(ai_messages)
+
+    print("\n--- Chat Summary ---")
+    print(f"Total messages exchanged: {total_messages}")
+    print(f"User messages: {len(user_messages)}")
+    print(f"AI messages: {len(ai_messages)}")
+
+
+if __name__ == "__main__":
+    file_path = "chat.txt"
+    user_msgs, ai_msgs = parse_chat(file_path)
+    generate_summary(user_msgs, ai_msgs)
